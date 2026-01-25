@@ -220,6 +220,16 @@ body {
 .blue-link { color: var(--link-blue); text-decoration: none; }
 .blue-link:hover { text-decoration: underline; }
 
+.post-text p {
+  margin-bottom: 12px; /* Adjust this number to make the gap bigger/smaller */
+  margin-top: 0;
+  line-height: 1.5; /* Good readability */
+}
+
+.post-text p:last-child {
+  margin-bottom: 0;
+}
+
 /* --- New Chevron Icon Style --- */
 .context-arrow-icon {
   color: var(--text-secondary);
@@ -291,6 +301,16 @@ body {
 .like-count { font-size: 13px; color: var(--text-secondary); display: none; }
 .action-btn.liked .action-icon-img { color: var(--accent-red); font-variation-settings: 'FILL' 1; }
 .action-btn.liked .like-count { display: block; color: var(--accent-red); }
+.action-btn.liked .material-icons-round {
+  /* Run the bounce animation once, for 0.3 seconds */
+  animation: heart-bounce 0.3s cubic-bezier(0.17, 0.89, 0.32, 1.49);
+}
+
+@keyframes heart-bounce {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.2); } /* Grow 40% bigger */
+  100% { transform: scale(1); }   /* Snap back to normal */
+}
 
 /* --- Context --- */
 .context-arrow { color: var(--text-secondary); font-size: 14px; margin: 0 6px; }
@@ -328,32 +348,6 @@ body {
   .bottom-nav { display: flex; }
   .main-wrapper { margin-top: 70px; padding-bottom: 80px; padding-left: 20px; padding-right: 20px; }
   .logo-container { left: 20px; }
-}
-
-/* --- Toast Notification --- */
-.toast {
-  visibility: hidden;
-  min-width: 250px;
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  border-radius: 50px; /* Pill shape */
-  padding: 12px 24px;
-  position: fixed;
-  z-index: 2000;
-  left: 50%;
-  bottom: 30px;
-  transform: translateX(-50%);
-  font-size: 14px;
-  box-shadow: 0px 4px 15px rgba(0,0,0,0.5);
-  opacity: 0;
-  transition: opacity 0.3s, bottom 0.3s;
-}
-
-.toast.show {
-  visibility: visible;
-  opacity: 1;
-  bottom: 50px; /* Slight slide-up animation */
 }
 
 
