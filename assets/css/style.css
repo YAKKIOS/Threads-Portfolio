@@ -19,7 +19,7 @@ body {
   margin: 0;
   display: flex;
   justify-content: center;
-  overflow-x: hidden; 
+  overflow-x: hidden;
 }
 
 /* --- Navbar --- */
@@ -28,7 +28,7 @@ body {
   top: 0;
   width: 100%;
   height: 60px;
-  background-color: rgba(0, 0, 0, 0.9); 
+  background-color: rgba(0, 0, 0, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,7 +41,7 @@ body {
   display: flex;
   align-items: center;
   /* Ensures the container itself clips anything spilling out */
-  border-radius: 50%; 
+  border-radius: 50%;
   overflow: hidden;
 }
 
@@ -52,7 +52,7 @@ body {
   /* The Fix: Forces the image into a circle */
   border-radius: 50%;
   /* Ensures image fills the circle without stretching/squishing */
-  object-fit: cover; 
+  object-fit: cover;
   display: block;
 }
 .page-title {
@@ -67,8 +67,8 @@ body {
   color: black;
   font-weight: 500;
   text-decoration: none;
-  font-size: 15px;       
-  padding: 8px 12px;     
+  font-size: 15px;
+  padding: 8px 12px;
   border-radius: 12px;
   transition: transform 0.1s; /* Smooth scale transition */
 }
@@ -84,19 +84,19 @@ body {
   left: 20px;
   top: 50%;
   transform: translateY(-50%);
-  display: flex; 
+  display: flex;
   flex-direction: column;
   gap: 16px;
   z-index: 900;
 }
 
 .bottom-nav {
-  display: none; 
+  display: none;
   position: fixed;
   bottom: 0;
   width: 100%;
   height: 60px;
-  background-color: rgba(0, 0, 0, 0.9); 
+  background-color: rgba(0, 0, 0, 0.9);
   border-top: 1px solid var(--border-stroke);
   justify-content: space-around;
   align-items: center;
@@ -131,7 +131,7 @@ body {
 }
 
 .nav-item-wrapper:hover .nav-icon,
-.nav-item-wrapper.active-page .nav-icon, 
+.nav-item-wrapper.active-page .nav-icon,
 .nav-item-wrapper.highlighted .nav-icon {
   color: var(--text-primary);
 }
@@ -156,7 +156,7 @@ body {
 .main-wrapper {
   margin-top: 80px;
   width: 100%;
-  max-width: 660px; 
+  max-width: 660px;
   padding-bottom: 100px;
   padding-left: 20px;
   padding-right: 20px;
@@ -169,7 +169,7 @@ body {
   border-radius: 32px;
   padding: 12px 0;
   min-height: 80vh;
-  overflow: hidden; 
+  overflow: hidden;
   width: 100%;
 }
 
@@ -209,7 +209,7 @@ body {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  min-width: 0; 
+  min-width: 0;
 }
 
 .header-row { display: flex; align-items: center; margin-bottom: 4px; }
@@ -219,6 +219,16 @@ body {
 .post-text { font-size: 15px; line-height: 21px; color: var(--text-primary); margin-bottom: 8px; word-wrap: break-word; }
 .blue-link { color: var(--link-blue); text-decoration: none; }
 .blue-link:hover { text-decoration: underline; }
+
+.post-text p {
+  margin-bottom: 12px; /* Adjust this number to make the gap bigger/smaller */
+  margin-top: 0;
+  line-height: 1.5; /* Good readability */
+}
+
+.post-text p:last-child {
+  margin-bottom: 0;
+}
 
 /* --- New Chevron Icon Style --- */
 .context-arrow-icon {
@@ -246,15 +256,15 @@ body {
 .carousel-container {
   display: flex;
   gap: 8px;
-  overflow-x: auto; 
+  overflow-x: auto;
   /* Fixed: Removed scroll-snap for free-flowing scroll */
-  padding-bottom: 8px; 
+  padding-bottom: 8px;
   margin-top: 8px;
   margin-bottom: 8px;
-  max-width: 100%; 
-  scrollbar-width: none; 
-  -ms-overflow-style: none; 
-  
+  max-width: 100%;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
   user-select: none;
   /* Fixed: Removed 'grab' cursor. It now inherits 'pointer' (link) from parent */
 }
@@ -264,12 +274,12 @@ body {
   cursor: grabbing;
   scroll-snap-type: none;
   /* ADD THIS: Prevents browser smooth-scroll from fighting your drag */
-  scroll-behavior: auto !important; 
+  scroll-behavior: auto !important;
 }
 
 .carousel-item {
-  min-width: 280px; 
-  height: 200px;    
+  min-width: 280px;
+  height: 200px;
   border-radius: 12px;
   border: 1px solid var(--border-stroke);
   overflow: hidden;
@@ -291,6 +301,56 @@ body {
 .like-count { font-size: 13px; color: var(--text-secondary); display: none; }
 .action-btn.liked .action-icon-img { color: var(--accent-red); font-variation-settings: 'FILL' 1; }
 .action-btn.liked .like-count { display: block; color: var(--accent-red); }
+.action-btn.liked .material-icons-round {
+  /* Run the bounce animation once, for 0.3 seconds */
+  animation: heart-bounce 0.3s cubic-bezier(0.17, 0.89, 0.32, 1.49);
+}
+
+@keyframes heart-bounce {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.2); } /* Grow 40% bigger */
+  100% { transform: scale(1); }   /* Snap back to normal */
+}
+
+/* Create the particles only when Liked */
+.action-btn.liked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+
+  /* This creates 8 "clones" of the dot in a circle shape */
+  /* Coordinates: X-axis, Y-axis, Color */
+  box-shadow:
+    -18px 0px var(--accent-red),  /* Left */
+    18px 0px var(--accent-red),   /* Right */
+    0px -18px var(--accent-red),  /* Top */
+    0px 18px var(--accent-red),   /* Bottom */
+    -12px -12px var(--accent-red),/* Top-Left */
+    12px -12px var(--accent-red), /* Top-Right */
+    -12px 12px var(--accent-red), /* Bottom-Left */
+    12px 12px var(--accent-red);  /* Bottom-Right */
+
+  /* Run the animation once */
+  animation: firework-particles 0.4s ease-out forwards;
+
+  /* Ensure mouse clicks pass through it */
+  pointer-events: none;
+}
+
+@keyframes firework-particles {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.5);
+    opacity: 0;
+  }
+}
 
 /* --- Context --- */
 .context-arrow { color: var(--text-secondary); font-size: 14px; margin: 0 6px; }
@@ -330,36 +390,10 @@ body {
   .logo-container { left: 20px; }
 }
 
-/* --- Toast Notification --- */
-.toast {
-  visibility: hidden;
-  min-width: 250px;
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  border-radius: 50px; /* Pill shape */
-  padding: 12px 24px;
-  position: fixed;
-  z-index: 2000;
-  left: 50%;
-  bottom: 30px;
-  transform: translateX(-50%);
-  font-size: 14px;
-  box-shadow: 0px 4px 15px rgba(0,0,0,0.5);
-  opacity: 0;
-  transition: opacity 0.3s, bottom 0.3s;
-}
-
-.toast.show {
-  visibility: visible;
-  opacity: 1;
-  bottom: 50px; /* Slight slide-up animation */
-}
-
 
 /* --- MEDIA QUERIES (Mobile) --- */
 @media (max-width: 768px) {
-  
+
   /* 1. Hide Desktop Sidebar / Show Mobile Nav */
   .sidebar { display: none; }
   .bottom-nav { display: flex; }
@@ -381,10 +415,10 @@ body {
     /* Remove borders and radius for mobile look */
     border: none;
     border-radius: 0;
-    background-color: #181818; 
+    background-color: #181818;
     padding: 0; /* Remove container vertical padding if desired */
   }
-  
+
   /* 4. CONTENT PADDING (The Fix) */
   /* This ensures text doesn't touch the screen edge */
   .thread-block {
