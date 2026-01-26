@@ -312,46 +312,6 @@ body {
   100% { transform: scale(1); }   /* Snap back to normal */
 }
 
-/* Create the particles only when Liked */
-.action-btn.liked::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-
-  /* This creates 8 "clones" of the dot in a circle shape */
-  /* Coordinates: X-axis, Y-axis, Color */
-  box-shadow:
-    -18px 0px var(--accent-red),  /* Left */
-    18px 0px var(--accent-red),   /* Right */
-    0px -18px var(--accent-red),  /* Top */
-    0px 18px var(--accent-red),   /* Bottom */
-    -12px -12px var(--accent-red),/* Top-Left */
-    12px -12px var(--accent-red), /* Top-Right */
-    -12px 12px var(--accent-red), /* Bottom-Left */
-    12px 12px var(--accent-red);  /* Bottom-Right */
-
-  /* Run the animation once */
-  animation: firework-particles 0.4s ease-out forwards;
-
-  /* Ensure mouse clicks pass through it */
-  pointer-events: none;
-}
-
-@keyframes firework-particles {
-  0% {
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(2.5);
-    opacity: 0;
-  }
-}
-
 /* --- Context --- */
 .context-arrow { color: var(--text-secondary); font-size: 14px; margin: 0 6px; }
 .context-text { font-weight: 500; color: var(--text-primary); margin-bottom: 2px; text-decoration: none;}
@@ -382,14 +342,6 @@ body {
   pointer-events: none; /* allows clicks to pass through */
   z-index: 10001; /* sits above everything */
 }
-
-/**@media (max-width: 768px) {
-  .sidebar { display: none; }
-  .bottom-nav { display: flex; }
-  .main-wrapper { margin-top: 70px; padding-bottom: 80px; padding-left: 20px; padding-right: 20px; }
-  .logo-container { left: 20px; }
-}
-
 
 /* --- MEDIA QUERIES (Mobile) --- */
 @media (max-width: 768px) {
