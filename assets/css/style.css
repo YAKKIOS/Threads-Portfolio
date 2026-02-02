@@ -250,8 +250,14 @@ body {
   margin-bottom: 8px;
   cursor: zoom-in;
 }
-.post-image { width: 100%; height: auto; display: block; object-fit: cover; transition: opacity 0.2s; }
+.post-image { width: 100%; height: auto; display: block; object-fit: cover; transition: opacity 0.2s; transition: transform 0.1s ease-out;}
 .post-image:hover { opacity: 0.9; }
+
+.post-image:active,
+.carousel-img img:active {
+  /* Shrink to 98% */
+  transform: scale(0.98);
+}
 
 .carousel-container {
   display: flex;
