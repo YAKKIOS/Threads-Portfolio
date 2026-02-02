@@ -295,7 +295,7 @@ body {
 
 /* --- Actions --- */
 .actions-row { display: flex; align-items: center; gap: 4px; margin-top: 0px; margin-left: -8px;}
-.action-btn { background: transparent; border: none; cursor: pointer; height: 36px; border-radius: 18px; padding: 0 8px; display: flex; align-items: center; justify-content: center; gap: 6px; color: var(--text-primary); transition: background-color 0.2s; min-width: 36px; }
+.action-btn { background: transparent; border: none; cursor: pointer; height: 36px; border-radius: 18px; padding: 0 8px; display: flex; align-items: center; justify-content: center; gap: 6px; color: #ccc; transition: background-color 0.2s; min-width: 36px; }
 .action-btn:hover { background-color: rgba(255, 255, 255, 0.1); }
 .action-icon-img { font-size: 20px !important; display: block; }
 .like-count { font-size: 13px; color: var(--text-secondary); display: none; }
