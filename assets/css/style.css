@@ -250,36 +250,48 @@ body {
   margin-bottom: 8px;
   cursor: zoom-in;
 }
-.post-image { width: 100%; height: auto; display: block; object-fit: cover; transition: opacity 0.2s; transition: transform 0.1s ease-out;}
-.post-image:hover { opacity: 0.9; }
 
+.post-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  
+  /* FIXED: Combined transitions so both Opacity and Transform work */
+  transition: opacity 0.2s, transform 0.1s ease-out;
+  
+  /* Optimization */
+  will-change: transform;
+}
+
+.post-image:hover {
+  opacity: 0.9;
+}
+
+/* The Tactile "Press" Animation */
 .post-image:active,
-.carousel-img img:active {
-  /* Shrink to 98% */
+.carousel-img:active { /* targeting the class directly */
   transform: scale(0.98);
+  opacity: 0.9;
 }
 
 .carousel-container {
   display: flex;
   gap: 8px;
   overflow-x: auto;
-  /* Fixed: Removed scroll-snap for free-flowing scroll */
   padding-bottom: 8px;
   margin-top: 8px;
   margin-bottom: 8px;
   max-width: 100%;
   scrollbar-width: none;
   -ms-overflow-style: none;
-
   user-select: none;
-  /* Fixed: Removed 'grab' cursor. It now inherits 'pointer' (link) from parent */
 }
 .carousel-container::-webkit-scrollbar { display: none; }
 
 .carousel-container.active {
   cursor: grabbing;
   scroll-snap-type: none;
-  /* ADD THIS: Prevents browser smooth-scroll from fighting your drag */
   scroll-behavior: auto !important;
 }
 
@@ -290,13 +302,14 @@ body {
   border: 1px solid var(--border-stroke);
   overflow: hidden;
   flex-shrink: 0;
-  /* Fixed: Removed scroll-snap alignment */
 }
 
 .carousel-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Add transition here too so carousel items are smooth */
+  transition: transform 0.1s ease-out;
 }
 
 /* --- Actions --- */
